@@ -82,5 +82,11 @@
     "ts": "2026-06-27T11:48:26Z",
     "title": "~2h20 in — 21.7M points, 49%",
     "body": "21.7M node-level price points, all 2,603 nodes reporting (~49% of jobs). Halfway in sight on the MDA market. Zero failures, fully resumable."
+  },
+  {
+    "n": 14,
+    "ts": "2026-06-27T11:59:27Z",
+    "title": "Past halfway — both markets now live",
+    "body": "23.2M node-level price points (~52% of jobs). MDA market complete; MTR (real-time market) now underway — both markets flowing. All 2,603 nodes reporting. Zero failures, fully resumable."
   }
 ]
