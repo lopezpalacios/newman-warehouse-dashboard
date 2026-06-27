@@ -64,5 +64,11 @@
     "ts": "2026-06-27T11:15:30Z",
     "title": "~1h50 in — 16.7M points, 37%",
     "body": "16.7M node-level price points, all 2,603 nodes reporting (~37% of jobs). MDA market nearing completion; MTR market next. Zero failures, fully resumable."
+  },
+  {
+    "n": 11,
+    "ts": "2026-06-27T11:26:26Z",
+    "title": "2 hours in — node data now exceeds all prior history",
+    "body": "18.3M node-level price points — already larger than our entire previous zona-level dataset (18.1M from 2016 onward). ~41% of jobs, all 2,603 nodes reporting. MDA finishing, MTR market next. Zero failures, fully resumable."
   }
 ]
