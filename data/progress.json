@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-06-27T14:20:12Z",
+  "updated_at": "2026-06-27T14:30:11Z",
   "backfill": {
     "label": "Node-level PML — 1-year backfill",
-    "rows": 44873928, "rows_target": 45600000,
+    "rows": 45019632, "rows_target": 45600000,
     "nodes": 2603, "nodes_total": 2603,
     "markets_done": 2, "markets_total": 2,
     "jobs_left": 0, "jobs_total": 264,
-    "status": "running", "eta": "in progress"
+    "status": "done", "eta": "complete"
   },
   "warehouse": {
     "business_tariffs": 27578, "domestic_rates": 2382, "tou_bands": 152,
