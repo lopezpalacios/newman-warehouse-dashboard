@@ -76,5 +76,11 @@
     "ts": "2026-06-27T11:37:29Z",
     "title": "~2h10 in — 20M points, 45%",
     "body": "20.0M node-level price points, all 2,603 nodes reporting (~45% of jobs). Approaching the halfway mark on the MDA market. Zero failures, fully resumable, steady pace."
+  },
+  {
+    "n": 13,
+    "ts": "2026-06-27T11:48:26Z",
+    "title": "~2h20 in — 21.7M points, 49%",
+    "body": "21.7M node-level price points, all 2,603 nodes reporting (~49% of jobs). Halfway in sight on the MDA market. Zero failures, fully resumable."
   }
 ]
