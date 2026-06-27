@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-06-27T11:00:05Z",
+  "updated_at": "2026-06-27T11:10:05Z",
   "backfill": {
     "label": "Node-level PML — 1-year backfill",
-    "rows": 14522472, "rows_target": 45600000,
+    "rows": 15886080, "rows_target": 45600000,
     "nodes": 2603, "nodes_total": 2603,
     "markets_done": 1, "markets_total": 2,
-    "jobs_left": 179, "jobs_total": 264,
+    "jobs_left": 169, "jobs_total": 264,
     "status": "running", "eta": "in progress"
   },
   "warehouse": {
