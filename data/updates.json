@@ -118,5 +118,11 @@
     "ts": "2026-06-27T12:54:34Z",
     "title": "~3h20 in — 31.8M points, 72%",
     "body": "31.8M node-level price points, all 2,603 nodes, both markets (~72% of jobs). Home stretch. Steady, zero failures, fully resumable."
+  },
+  {
+    "n": 20,
+    "ts": "2026-06-27T13:05:29Z",
+    "title": "~3h30 in — 33.5M points, 76%",
+    "body": "33.5M node-level price points, all 2,603 nodes, both markets (~76% of jobs). Steady, zero failures, fully resumable."
   }
 ]
