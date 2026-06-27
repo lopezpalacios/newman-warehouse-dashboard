@@ -148,5 +148,11 @@
     "ts": "2026-06-27T13:49:31Z",
     "title": "~4h10 in — 40.4M points, 90%",
     "body": "40.4M node-level price points, all 2,603 nodes, both markets (~90% of jobs). ~26 jobs remaining. Zero failures, fully resumable."
+  },
+  {
+    "n": 25,
+    "ts": "2026-06-27T14:00:18Z",
+    "title": "~4h20 in — 42.1M points, 94%",
+    "body": "42.1M node-level price points, all 2,603 nodes, both markets (~94% of jobs). ~15 jobs left. One node-batch request failed after retries (a single MTR week) and was logged for backfill; everything else intact. Resumable by design."
   }
 ]
