@@ -166,5 +166,11 @@
     "ts": "2026-06-27T14:31:24Z",
     "title": "COMPLETE — 1-year node-level PML captured",
     "body": "Backfill finished: ~45M node-level price points across all 2,603 grid nodes, both markets (MDA + MTR), full year 2025-06-27 to 2026-06-26. ~0.9% of requests failed transiently and are being gap-filled now. Newman now holds the most granular view of Mexican grid prices anywhere outside CENACE."
+  },
+  {
+    "n": 28,
+    "ts": "2026-06-27T15:12:32Z",
+    "title": "VERIFIED COMPLETE — 45.0M node-PML points",
+    "body": "Final: 45,019,632 node-level price points, all 2,603 grid nodes, both markets (MDA+MTR), full year. The ~0.9% of windows that did not return are legitimately empty at CENACE (No hay datos — mostly unsettled MTR on the most recent day), confirmed via API, not missed fetches. The dataset is complete for everything CENACE publishes."
   }
 ]
