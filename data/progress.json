@@ -1,25 +1,15 @@
 {
-  "updated_at": "2026-06-27T11:35:00Z",
+  "updated_at": "2026-06-27T09:45:57Z",
   "backfill": {
     "label": "Node-level PML — 1-year backfill",
-    "rows": 3891768,
-    "rows_target": 45600000,
-    "nodes": 2603,
-    "nodes_total": 2603,
-    "markets_done": 1,
-    "markets_total": 2,
-    "jobs_left": 239,
-    "jobs_total": 264,
-    "status": "running",
-    "eta": "~3.5 h remaining"
+    "rows": 4714488, "rows_target": 45600000,
+    "nodes": 2603, "nodes_total": 2603,
+    "markets_done": 1, "markets_total": 2,
+    "jobs_left": 234, "jobs_total": 264,
+    "status": "running", "eta": "in progress"
   },
   "warehouse": {
-    "business_tariffs": 27578,
-    "domestic_rates": 2382,
-    "tou_bands": 152,
-    "cp_mapped": 32009,
-    "cp_total": 32009,
-    "nodes": 2603,
-    "pml_zona_rows": 18148637
+    "business_tariffs": 27578, "domestic_rates": 2382, "tou_bands": 152,
+    "cp_mapped": 32009, "cp_total": 32009, "nodes": 2603, "pml_zona_rows": 18148637
   }
 }
