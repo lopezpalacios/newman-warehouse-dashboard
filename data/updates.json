@@ -34,5 +34,11 @@
     "ts": "2026-06-27T10:20:27Z",
     "title": "1 hour in — 8.7M points, 20%",
     "body": "8.72M node-level price points, all 2,603 nodes reporting. One-fifth of jobs complete on the MDA market. Zero failures, fully resumable, steady pace."
+  },
+  {
+    "n": 6,
+    "ts": "2026-06-27T10:31:26Z",
+    "title": "Crossed 10 million price points",
+    "body": "10.3M node-level price points captured, all 2,603 nodes reporting (~23% of jobs). Zero failures, fully resumable, steady pace on the MDA market."
   }
 ]
