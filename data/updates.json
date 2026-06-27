@@ -52,5 +52,11 @@
     "ts": "2026-06-27T10:53:27Z",
     "title": "~1h30 in — 13.5M points, 30%",
     "body": "13.5M node-level price points, all 2,603 nodes reporting (~30% of jobs). Steady on the MDA market, zero failures, fully resumable."
+  },
+  {
+    "n": 9,
+    "ts": "2026-06-27T11:04:26Z",
+    "title": "~1h40 in — 15.1M points, 34%",
+    "body": "15.1M node-level price points, all 2,603 nodes reporting (~34% of jobs). MDA market, steady, zero failures, fully resumable."
   }
 ]
