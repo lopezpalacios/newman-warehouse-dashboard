@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newman Energy — Mexico Electricity Data Warehouse</title>
+<meta name="description" content="Live status + architecture of the Newman Energy data warehouse: a queryable clone of Mexico's CFE tariff system and CENACE grid prices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/newman.css">
+<link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo" aria-label="Newman Energy">
+      <svg viewBox="0 0 1865.2 185.03" role="img" aria-label="Newman" xmlns="http://www.w3.org/2000/svg" height="22">
+        <g fill="#fff">
+          <path d="M329.74,6.8h41.71l111.77,119.15V6.8h38.95v165.93h-42.87l-110.39-119.15v119.15h-39.18V6.8Z"/>
+          <path d="M607.21,37.45v36.41h113.62v28.12h-113.62v40.1h119.38v30.65h-161.32V6.8h161.32v30.65h-119.38Z"/>
+          <path d="M1057.29,6.8l-64.3,165.93h-49.09l-38.03-111.77-2.77-8.99-2.54,8.99-38.03,111.77h-49.09L749.16,6.8h43.56l45.63,133.44,44.25-129.06h41.25l41.25,120.07,3,8.99,3.22-9.22,42.41-124.22h43.56Z"/>
+          <path d="M1086.78,6.8h52.08l57.85,99.1,4.15,6.68,61.76-105.78h51.86v165.93h-37.57V47.13l-5.07,8.76-54.62,90.8h-32.96l-59.69-99.56v125.6h-37.79V6.8Z"/>
+          <path d="M1489.85,136.78h-91.49l-16.36,35.95h-42.87L1419.79,6.8h48.17l80.89,165.93h-42.63l-16.36-35.95ZM1476.72,107.97l-32.5-71.44-32.73,71.44h65.22Z"/>
+          <path d="M1573.27,6.8h41.71l111.77,119.15V6.8h38.95v165.93h-42.87l-110.39-119.15v119.15h-39.18V6.8Z"/>
+        </g>
+        <g fill="#fff">
+          <polygon points="2.47 3.06 0 0 85.76 0 86.47 1.3 168.41 152.36 147.28 185.03 2.47 3.06"/>
+          <polygon points="95.54 3.04 93.17 0 151.49 0 152.2 1.33 204.39 96.74 188.98 120.56 95.54 3.04"/>
+          <polygon points="161.87 3.07 159.39 0 197.72 0 198.42 1.33 229.39 58.08 218.74 74.54 161.87 3.07"/>
+          <polygon points="205.52 0 228.73 0 246.42 31.75 239.32 42.72 205.52 0"/>
+          <polygon points="236.11 0 266.95 0 253.06 21.48 236.11 0"/>
+        </g>
+      </svg>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#status">Status</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#data">Data</a>
+      <a href="#updates">Updates</a>
+    </nav>
+    <a href="#updates" class="btn nav-cta">Latest update</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner wrap">
+    <span class="live-badge"><span class="live-dot on" id="live-dot"></span><span id="live-text">Collecting · live</span></span>
+    <h1 class="h-xl">Mexico's electricity grid,<br><span class="grad-text">as one queryable warehouse.</span></h1>
+    <p class="lead">A faithful clone of CFE's full tariff system + CENACE wholesale prices — every postal code, every tariff, every grid node. The data foundation for instant, accurate savings.</p>
+    <p class="muted" id="updated" style="font-size:13px">Loading live status…</p>
+  </div>
+</section>
+
+<!-- LIVE STATUS -->
+<section id="status" class="section">
+  <div class="wrap">
+    <p class="kicker">Live collection</p>
+    <h2 class="h-lg">Node-level PML — 1-year backfill</h2>
+    <div class="section-rule"></div>
+    <div class="metric-grid" style="margin-bottom:var(--s-24)">
+      <div class="metric"><div class="num" id="m-rows">0</div><div class="lbl">Price points</div><div class="sub">of ~45.6M target</div></div>
+      <div class="metric"><div class="num" id="m-nodes">0</div><div class="lbl">Grid nodes</div><div class="sub">all reporting</div></div>
+      <div class="metric"><div class="num" id="markets">0 / 2</div><div class="lbl">Markets</div><div class="sub">MDA + MTR</div></div>
+      <div class="metric"><div class="num"><span id="pct-jobs">0%</span></div><div class="lbl">Jobs complete</div><div class="sub" id="eta">—</div></div>
+    </div>
+    <div class="bar" aria-label="backfill progress"><i id="bar-jobs"></i></div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture" class="section alt">
+  <div class="wrap">
+    <p class="kicker">Architecture</p>
+    <h2 class="h-lg">From government sources to one bill-ready API.</h2>
+    <div class="section-rule"></div>
+    <div class="arch">
+      <div class="arch-row">
+        <div class="node-box src"><h4>CFE</h4><p>Tariffs · acuerdos (Playwright, WAF-cleared)</p></div>
+        <div class="node-box src"><h4>CENACE</h4><p>PML nodes + zonas (SWPML API)</p></div>
+        <div class="node-box src"><h4>CRE / CNE</h4><p>GD circuits · regulatory acuerdos</p></div>
+        <div class="node-box src"><h4>SEPOMEX</h4><p>155k postal codes → geography</p></div>
+      </div>
+      <div class="arch-flow" aria-hidden="true">▼</div>
+      <div class="arch-row">
+        <div class="node-box store"><h4>Mini · Postgres + Python scrapers</h4><p>Idempotent, resumable collectors. 18M zona-PML + node-PML backfill. Crons: nightly + monthly.</p></div>
+      </div>
+      <div class="arch-flow" aria-hidden="true">▼</div>
+      <div class="arch-row">
+        <div class="node-box store"><h4>Supabase (self-host, Docker)</h4><p>Source-namespaced warehouse · RLS · cloud-portable (lift &amp; shift when PMF hits).</p></div>
+      </div>
+      <div class="arch-flow" aria-hidden="true">▼</div>
+      <div class="arch-row">
+        <div class="node-box store"><h4>Views: <code>cp_lookup · bill_basis · tou_for_cp</code></h4><p>CP → division → rates + hour bands. One query, no joins.</p></div>
+        <div class="node-box store"><h4>Savings Engine</h4><p>Any address → accurate CFE bill basis instantly.</p></div>
+      </div>
+      <div style="margin-top:var(--s-24);text-align:center">
+        <span class="schema-chip"><b>cenace</b> · prices</span>
+        <span class="schema-chip"><b>cfe</b> · tariffs</span>
+        <span class="schema-chip"><b>cre</b> · gen-distrib</span>
+        <span class="schema-chip"><b>bess</b> · vendors</span>
+        <span class="schema-chip"><b>ref</b> · geo / CP</span>
+        <span class="schema-chip"><b>app</b> · clients</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA INVENTORY -->
+<section id="data" class="section">
+  <div class="wrap">
+    <p class="kicker">Data inventory</p>
+    <h2 class="h-lg">What's already collected &amp; verified.</h2>
+    <div class="section-rule"></div>
+    <div class="metric-grid">
+      <div class="metric"><div class="num" id="w-tariffs">0</div><div class="lbl">Business tariff rows</div><div class="sub">12 tariffs · 2019–2026</div></div>
+      <div class="metric"><div class="num" id="w-domestic">0</div><div class="lbl">Domestic rate rows</div><div class="sub">8 tariffs · 2017–2026</div></div>
+      <div class="metric"><div class="num" id="w-tou">0</div><div class="lbl">TOU hour bands</div><div class="sub">GDMTH · DIST · DIT</div></div>
+      <div class="metric"><div class="num" id="w-cp">0</div><div class="lbl">Postal codes mapped</div><div class="sub">100% → division</div></div>
+      <div class="metric"><div class="num" id="w-pml">0</div><div class="lbl">Zona-PML rows</div><div class="sub">2016 → present</div></div>
+      <div class="metric"><div class="num">2,603</div><div class="lbl">Grid nodes catalogued</div><div class="sub">+ node-PML in progress</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- UPDATES -->
+<section id="updates" class="section alt">
+  <div class="wrap">
+    <p class="kicker">Status feed</p>
+    <h2 class="h-lg">CEO updates.</h2>
+    <div class="section-rule"></div>
+    <div class="feed" id="feed"><p class="muted">Loading updates…</p></div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <svg viewBox="0 0 1865.2 185.03" role="img" aria-label="Newman" xmlns="http://www.w3.org/2000/svg" height="20">
+      <g fill="#fff"><path d="M329.74,6.8h41.71l111.77,119.15V6.8h38.95v165.93h-42.87l-110.39-119.15v119.15h-39.18V6.8Z"/><path d="M607.21,37.45v36.41h113.62v28.12h-113.62v40.1h119.38v30.65h-161.32V6.8h161.32v30.65h-119.38Z"/><path d="M1057.29,6.8l-64.3,165.93h-49.09l-38.03-111.77-2.77-8.99-2.54,8.99-38.03,111.77h-49.09L749.16,6.8h43.56l45.63,133.44,44.25-129.06h41.25l41.25,120.07,3,8.99,3.22-9.22,42.41-124.22h43.56Z"/><path d="M1086.78,6.8h52.08l57.85,99.1,4.15,6.68,61.76-105.78h51.86v165.93h-37.57V47.13l-5.07,8.76-54.62,90.8h-32.96l-59.69-99.56v125.6h-37.79V6.8Z"/><path d="M1489.85,136.78h-91.49l-16.36,35.95h-42.87L1419.79,6.8h48.17l80.89,165.93h-42.63l-16.36-35.95ZM1476.72,107.97l-32.5-71.44-32.73,71.44h65.22Z"/><path d="M1573.27,6.8h41.71l111.77,119.15V6.8h38.95v165.93h-42.87l-110.39-119.15v119.15h-39.18V6.8Z"/></g>
+      <g fill="#fff"><polygon points="2.47 3.06 0 0 85.76 0 86.47 1.3 168.41 152.36 147.28 185.03 2.47 3.06"/><polygon points="95.54 3.04 93.17 0 151.49 0 152.2 1.33 204.39 96.74 188.98 120.56 95.54 3.04"/><polygon points="161.87 3.07 159.39 0 197.72 0 198.42 1.33 229.39 58.08 218.74 74.54 161.87 3.07"/><polygon points="205.52 0 228.73 0 246.42 31.75 239.32 42.72 205.52 0"/><polygon points="236.11 0 266.95 0 253.06 21.48 236.11 0"/></g>
+    </svg>
+    <p class="muted">Newman Energy · internal status dashboard · data on the mini, mirrored to Supabase</p>
+  </div>
+</footer>
+
+<script src="assets/js/newman.js"></script>
+<script src="assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[
+  {
+    "n": 1,
+    "ts": "2026-06-27T11:29:00Z",
+    "title": "Node-PML backfill — 10 min in",
+    "body": "2.16M price points captured, all 2,603 nodes confirmed reporting. Full-year MDA market flowing; MTR queued. ETA revised to ~3–4 h — limiter is the government API's response speed (~5s/request), not our hardware. Holding worker count steady to avoid an IP block. Resumable, zero gaps."
+  },
+  {
+    "n": 0,
+    "ts": "2026-06-27T11:19:00Z",
+    "title": "Largest data pull in company history — kickoff",
+    "body": "Started a full year of node-level grid prices: every individual interconnection point (~2,600 nodes), not just regional averages. The averages hid the spread; the spread is the business. Running on our own hardware, zero cloud cost, 6 parallel workers throttled polite. Target ~45M price points."
+  }
+]
