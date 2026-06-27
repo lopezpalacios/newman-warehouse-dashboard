@@ -10,5 +10,11 @@
     "ts": "2026-06-27T11:19:00Z",
     "title": "Largest data pull in company history — kickoff",
     "body": "Started a full year of node-level grid prices: every individual interconnection point (~2,600 nodes), not just regional averages. The averages hid the spread; the spread is the business. Running on our own hardware, zero cloud cost, 6 parallel workers throttled polite. Target ~45M price points."
+  },
+  {
+    "n": 2,
+    "ts": "2026-06-27T09:47:28Z",
+    "title": "Backfill 30 min in — 12% complete",
+    "body": "4.94M node-level price points captured, all 2,603 nodes reporting. On the ~3.5h glidepath; limiter remains the government API (~5s/request), not our hardware. Zero failures, fully resumable. This dashboard is now live for the board."
   }
 ]
