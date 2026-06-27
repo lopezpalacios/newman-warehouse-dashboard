@@ -22,5 +22,11 @@
     "ts": "2026-06-27T09:58:31Z",
     "title": "~40 min in — 6.3M points, 14%",
     "body": "6.30M node-level price points, all 2,603 nodes reporting. ~14% of jobs complete on the MDA market. Steady, zero failures, fully resumable. Multi-hour glidepath holds."
+  },
+  {
+    "n": 4,
+    "ts": "2026-06-27T10:09:32Z",
+    "title": "~50 min in — 7.5M points, 17%",
+    "body": "7.54M node-level price points, all 2,603 nodes reporting. ~17% of jobs complete. Steady, zero failures, fully resumable."
   }
 ]
