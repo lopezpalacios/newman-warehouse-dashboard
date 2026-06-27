@@ -16,5 +16,11 @@
     "ts": "2026-06-27T09:47:28Z",
     "title": "Backfill 30 min in — 12% complete",
     "body": "4.94M node-level price points captured, all 2,603 nodes reporting. On the ~3.5h glidepath; limiter remains the government API (~5s/request), not our hardware. Zero failures, fully resumable. This dashboard is now live for the board."
+  },
+  {
+    "n": 3,
+    "ts": "2026-06-27T09:58:31Z",
+    "title": "~40 min in — 6.3M points, 14%",
+    "body": "6.30M node-level price points, all 2,603 nodes reporting. ~14% of jobs complete on the MDA market. Steady, zero failures, fully resumable. Multi-hour glidepath holds."
   }
 ]
