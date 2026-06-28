@@ -37,6 +37,14 @@
     var pl = document.getElementById("pct-jobs"); if (pl) pl.textContent = pct + "%";
     var et = document.getElementById("eta"); if (et) et.textContent = b.eta || "";
     var mk = document.getElementById("markets"); if (mk) mk.textContent = (b.markets_done || 0) + " / " + (b.markets_total || 2);
+    // historical archive
+    var a = p.archive || {};
+    set("a-rows", a.rows); set("a-months", a.months); set("a-files", a.files);
+    var ae = document.getElementById("a-earliest"); if (ae) ae.textContent = a.earliest || "—";
+    var asz = document.getElementById("a-size"); if (asz && a.size) asz.textContent = a.size + " on disk (compressed)";
+    var ast = document.getElementById("a-status"); if (ast) ast.textContent = a.status === "running" ? "collecting · live" : "complete";
+    var apct = a.months_total ? Math.round((a.months || 0) / a.months_total * 100) : 0;
+    var abar = document.getElementById("bar-archive"); if (abar) setTimeout(function () { abar.style.width = apct + "%"; }, 300);
     var up = document.getElementById("updated"); if (up && p.updated_at) up.textContent = "Updated " + timeAgo(p.updated_at);
     var dot = document.getElementById("live-dot");
     if (dot) dot.className = "live-dot " + (b.status === "running" ? "on" : "");

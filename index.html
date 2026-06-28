@@ -37,6 +37,7 @@
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#status">Status</a>
+      <a href="#archive">Archive</a>
       <a href="#architecture">Architecture</a>
       <a href="#data">Data</a>
       <a href="#updates">Updates</a>
@@ -73,8 +74,25 @@
   </div>
 </section>
 
+<!-- HISTORICAL ARCHIVE -->
+<section id="archive" class="section alt">
+  <div class="wrap">
+    <p class="kicker">Historical archive</p>
+    <h2 class="h-lg">Node-level PML back to market start (2016).</h2>
+    <div class="section-rule"></div>
+    <p class="lead" style="margin-bottom:var(--s-24)">Compressed Parquet — the full nine-year price history of every grid node, ~10× smaller than a database and cloud-portable. Filling now, oldest-data-first.</p>
+    <div class="metric-grid" style="margin-bottom:var(--s-24)">
+      <div class="metric"><div class="num" id="a-rows">0</div><div class="lbl">Historical price points</div><div class="sub" id="a-size">archive on disk</div></div>
+      <div class="metric"><div class="num" id="a-months">0</div><div class="lbl">Months captured</div><div class="sub">of 113 (2016→2025)</div></div>
+      <div class="metric"><div class="num" id="a-files">0</div><div class="lbl">Parquet files</div><div class="sub">one per month / market</div></div>
+      <div class="metric"><div class="num" id="a-earliest">—</div><div class="lbl">Earliest date</div><div class="sub" id="a-status">collecting</div></div>
+    </div>
+    <div class="bar" aria-label="archive progress"><i id="bar-archive"></i></div>
+  </div>
+</section>
+
 <!-- ARCHITECTURE -->
-<section id="architecture" class="section alt">
+<section id="architecture" class="section">
   <div class="wrap">
     <p class="kicker">Architecture</p>
     <h2 class="h-lg">From government sources to one bill-ready API.</h2>

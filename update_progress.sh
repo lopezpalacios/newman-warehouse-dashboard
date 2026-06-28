@@ -15,6 +15,23 @@ JOBS_LEFT=$(grep -oE 'jobs left' /tmp/pml_year.log >/dev/null 2>&1 && \
 PG=$(pgrep -f pml_parallel >/dev/null 2>&1 && echo running || echo done)
 [ "$PG" = "done" ] && JOBS_LEFT=0
 
+# --- historical Parquet archive ---
+ARCH_DIR="$HOME/newman-data/pml_nodo_history"
+AROWS=0; AMONTHS=0; ALO=""; ASIZE="0"
+AFILES=$(ls "$ARCH_DIR"/*.parquet 2>/dev/null | wc -l | tr -d ' ')
+ARUN=$(pgrep -f pml_nodo_history >/dev/null 2>&1 && echo running || echo done)
+if [ "${AFILES:-0}" -gt 0 ]; then
+  ASIZE=$(du -sh "$ARCH_DIR" 2>/dev/null | awk '{print $1}')
+  read AROWS AMONTHS ALO < <("$HOME/projects/browser-use-jobs/.venv/bin/python" - <<PYEOF 2>/dev/null || echo "0 0 -"
+import duckdb
+try:
+    r=duckdb.sql("select count(*), count(distinct substr(fecha,1,7)), min(fecha) from read_parquet('$ARCH_DIR/*.parquet')").fetchone()
+    print(r[0], r[1], r[2] or '-')
+except Exception: print("0 0 -")
+PYEOF
+)
+fi
+
 # --- warehouse counts (Supabase) ---
 read T D TOU CP NZ PMLZ < <("$PSQL" "$TARGET_DSN" -tA -F' ' -c \
   "select (select count(*) from cfe.tariff),(select count(*) from cfe.domestic_rate),(select count(*) from cfe.tou_schedule),(select count(*) from ref.cp_division),(select count(*) from cenace.nodo_zona),18148637;" 2>/dev/null || echo "27578 2382 152 32009 2603 18148637")
@@ -34,6 +51,11 @@ cat > data/progress.json <<JSON
   "warehouse": {
     "business_tariffs": ${T:-0}, "domestic_rates": ${D:-0}, "tou_bands": ${TOU:-0},
     "cp_mapped": ${CP:-0}, "cp_total": ${CP:-0}, "nodes": ${NZ:-0}, "pml_zona_rows": ${PMLZ:-0}
+  },
+  "archive": {
+    "label": "Historical node-PML — Parquet archive (2016 → 2025)",
+    "rows": ${AROWS:-0}, "files": ${AFILES:-0}, "months": ${AMONTHS:-0}, "months_total": 113,
+    "earliest": "${ALO:--}", "size": "${ASIZE:-0}", "status": "$ARUN"
   }
 }
 JSON
