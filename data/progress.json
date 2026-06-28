@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-28T02:41:47Z",
+  "updated_at": "2026-06-28T02:46:33Z",
   "backfill": {
     "label": "Node-level PML — 1-year backfill",
     "rows": 45019632, "rows_target": 45600000,
@@ -11,5 +11,10 @@
   "warehouse": {
     "business_tariffs": 27578, "domestic_rates": 2382, "tou_bands": 152,
     "cp_mapped": 32009, "cp_total": 32009, "nodes": 2603, "pml_zona_rows": 18148637
+  },
+  "archive": {
+    "label": "Historical node-PML — Parquet archive (2016 → 2025)",
+    "rows": 0, "files": 0, "months": 0, "months_total": 113,
+    "earliest": "-", "size": "0", "status": "running"
   }
 }
