@@ -18,7 +18,7 @@ PG=$(pgrep -f pml_parallel >/dev/null 2>&1 && echo running || echo done)
 # --- historical Parquet archive ---
 ARCH_DIR="$HOME/newman-data/pml_nodo_history"
 AROWS=0; AMONTHS=0; ALO=""; ASIZE="0"
-AFILES=$(ls "$ARCH_DIR"/*.parquet 2>/dev/null | wc -l | tr -d ' ')
+AFILES=$(find "$ARCH_DIR" -name '*.parquet' 2>/dev/null | wc -l | tr -d ' ')
 ARUN=$(pgrep -f pml_nodo_history >/dev/null 2>&1 && echo running || echo done)
 if [ "${AFILES:-0}" -gt 0 ]; then
   ASIZE=$(du -sh "$ARCH_DIR" 2>/dev/null | awk '{print $1}')
