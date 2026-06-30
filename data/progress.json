@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-30T12:20:13Z",
+  "updated_at": "2026-06-30T12:30:14Z",
   "backfill": {
     "label": "Node-level PML — 1-year backfill",
     "rows": 45207048, "rows_target": 45600000,
@@ -14,7 +14,7 @@
   },
   "archive": {
     "label": "Historical node-PML — Parquet archive (2016 → 2025)",
-    "rows": 260915960, "files": 142, "months": 71, "months_total": 113,
-    "earliest": "2019-08-01", "size": "1.6G", "status": "running"
+    "rows": 262715840, "files": 143, "months": 72, "months_total": 113,
+    "earliest": "2019-07-01", "size": "1.6G", "status": "running"
   }
 }
